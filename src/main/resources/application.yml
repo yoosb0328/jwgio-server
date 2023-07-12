@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://데이터베이스주소:포트/데이터베이스이름
+    username: username
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        use_sql_comments: true
+        format_sql: true
+    show-sql: true
+    database: postgresql
+
+logging:
+  level:
+    org.hibernate.sql: debug
+    #org.hibernate.type: trace

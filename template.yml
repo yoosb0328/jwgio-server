@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SpringBoot on AWS Lambda Study
+
+Globals:
+  Function:
+    Timeout: 30
+    Environment:
+      Variables:
+        DATABASE_ENDPOINT: !Ref DatabaseEndpoint
+
+Parameters:
+  DatabaseEndpoint:
+    Description: 데이터베이스 주소
+    Type: String
+
+Resources:
+  SpringLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.study.springlambda.StreamLambdaHandler::handleRequest
+      Runtime: java11
+      CodeUri: .
+      MemorySize: 2048
+      Timeout: 60
+      Architectures:
+        - x86_64
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Events:
+        SpringLambda:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
