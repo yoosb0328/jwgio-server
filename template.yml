@@ -4,25 +4,29 @@ Description: SpringBoot on AWS Lambda Study
 
 Globals:
   Function:
-    Timeout: 30
+    Timeout: 60
     Environment:
       Variables:
         DATABASE_ENDPOINT: !Ref DatabaseEndpoint
 
 Parameters:
   DatabaseEndpoint:
-    Description: 데이터베이스 주소
+    Description: ysb-test-database.cpgkx9kinjev.ap-northeast-2.rds.amazonaws.com
+    #데이터베이스 주소
     Type: String
 
 Resources:
   SpringLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: com.study.springlambda.StreamLambdaHandler::handleRequest
+      Handler: com.ysb.jwgio.StreamLambdaHandler::handleRequest
       Runtime: java11
       CodeUri: .
       MemorySize: 2048
       Timeout: 60
+      AutoPublishAlias: latest
+      SnapStart:
+        ApplyOn: PublishedVersions
       Architectures:
         - x86_64
       Policies:
@@ -33,4 +37,5 @@ Resources:
           Properties:
             Path: /{proxy+}
             Method: ANY
+
 

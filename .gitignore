@@ -7,6 +7,9 @@ build/
 *.toml
 ### AWS SAM ###
 .aws.-sam
+### aws config ###
+samconfig.toml
+template.yml
 ### STS ###
 .apt_generated
 .classpath
@@ -37,3 +40,7 @@ out/
 
 ### VS Code ###
 .vscode/
+### Local yml ###
+!**/src/main/resources/application-local.yml
+### prod yml ###
+!**/src/main/resources/application.yml
