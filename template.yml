@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: SpringBoot on AWS Lambda Study
+Description: SpringBoot on AWS Lambda
 
 Globals:
   Function:
@@ -11,7 +11,7 @@ Globals:
 
 Parameters:
   DatabaseEndpoint:
-    Description: ysb-test-database.cpgkx9kinjev.ap-northeast-2.rds.amazonaws.com
+    Description: Your Database Endpoint
     #데이터베이스 주소
     Type: String
 
@@ -19,7 +19,7 @@ Resources:
   SpringLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: com.ysb.jwgio.StreamLambdaHandler::handleRequest
+      Handler: Your AWS Lambda Handler
       Runtime: java11
       CodeUri: .
       MemorySize: 2048
